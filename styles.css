@@ -61,17 +61,17 @@ body {
 /* Social icons styling */
 .social-icons {
     margin-top: 20px;
+    text-align: center; /* Center-align icons */
 }
 
 .social-icons img {
-    width: 30px; /* Adjust size */
+    width: 30px; /* Uniform size for all icons */
     height: 30px;
-    margin: 5px; /* Add spacing */
+    margin: 5px; /* Add spacing between icons */
     transition: transform 0.3s ease;
-    filter: grayscale(100%); /* Optional: make icons grayscale */
 }
 
 .social-icons img:hover {
-    transform: scale(1.1); /* Slight enlargement on hover */
-    filter: none; /* Remove grayscale on hover */
+    transform: scale(1.2); /* Slightly enlarge on hover */
+    filter: brightness(1.2); /* Brighten the icon on hover */
 }
