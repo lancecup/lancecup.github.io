@@ -3,95 +3,41 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    color: #fff;
-    text-align: center;
-    background-color: #000;
-}
-
-/* Background styling */
-.background {
-    background: url('background.jpg') no-repeat center center/cover;
-    height: 100vh;
+    background-color: #f4f4f9;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
 }
 
-/* Profile section styling */
-.profile-container {
-    background: rgba(0, 0, 0, 0.6); /* Transparent overlay */
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 400px;
+/* Main container styling */
+.main-container {
+    text-align: center;
 }
 
+/* Profile picture styling */
 .profile-pic {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    border: 3px solid #fff;
+    border: 5px solid #333;
     margin-bottom: 20px;
-}
-
-h1 {
-    font-size: 2em;
-    margin: 10px 0;
-}
-
-h2 {
-    font-size: 1.2em;
-    font-weight: 300;
-    margin: 10px 0 20px;
 }
 
 /* Buttons styling */
 .buttons .button {
     text-decoration: none;
     color: #fff;
-    background: transparent;
-    border: 2px solid #fff;
+    background: #333;
+    border: none;
     border-radius: 20px;
     padding: 10px 20px;
-    margin: 5px;
+    margin: 10px;
+    font-size: 16px;
     display: inline-block;
-    transition: 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .buttons .button:hover {
-    background: #fff;
-    color: #000;
-}
-
-/* Social icons styling */
-.social-icons img {
-    width: 30px;
-    height: 30px;
-    margin: 10px;
-    transition: transform 0.3s;
-}
-
-.social-icons img:hover {
-    transform: scale(1.1);
-}
-
-/* About Page Layout */
-.about-container {
-    display: flex;
-    min-height: 100vh;
-}
-
-.about-left {
-    flex: 1;
-    background: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.about-right {
-    flex: 2;
-    padding: 50px;
-    background: #fff;
-    color: #333;
-    text-align: left;
+    background-color: #555;
 }
