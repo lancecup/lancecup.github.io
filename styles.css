@@ -4,62 +4,47 @@ body {
     padding: 0;
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
-}
-
-/* About Page Layout */
-.about-container {
-    display: flex;
-    min-height: 100vh;
-}
-
-/* Left Section: Profile Card */
-.about-left {
-    flex: 1;
-    background: #333; /* Dark background for left section */
-    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    padding: 20px;
+    height: 100vh;
 }
 
-.profile-card {
+/* Main container */
+.main-container {
     text-align: center;
-    padding: 20px;
 }
 
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 5px solid #fff;
+/* Profile picture styling */
+.profile-section {
     margin-bottom: 20px;
 }
 
+.profile-pic {
+    width: 150px; /* Adjust size */
+    height: 150px;
+    border-radius: 50%; /* Circular picture */
+    border: 5px solid #333; /* Dark border */
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+}
+
+/* Name styling */
 .name {
-    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1.8em;
     font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
 }
 
-.title {
-    font-size: 1.2em;
-    font-weight: normal;
-}
-
-hr {
-    border: 1px solid #fff;
-    margin: 20px 0;
-}
-
+/* Buttons styling */
 .buttons .button {
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-    background: transparent;
-    border: 2px solid #fff;
+    background: #333;
+    border: 2px solid transparent;
     border-radius: 20px;
     padding: 10px 20px;
     margin: 5px;
@@ -70,9 +55,10 @@ hr {
 .buttons .button:hover {
     background: #fff; /* Background turns white */
     color: #333; /* Text turns dark */
+    border-color: #333; /* Add dark border */
 }
 
-/* Social Icons */
+/* Social icons styling */
 .social-icons {
     margin-top: 20px;
 }
@@ -85,32 +71,5 @@ hr {
 }
 
 .social-icons img:hover {
-    transform: scale(1.2);
-}
-
-/* Right Section: Content */
-.about-right {
-    flex: 2;
-    padding: 60px;
-    background: #fff;
-    color: #333;
-}
-
-.about-right h2 {
-    font-size: 2em;
-    font-family: Georgia, serif;
-    margin-bottom: 20px;
-}
-
-.about-right p {
-    font-size: 1.2em;
-    line-height: 1.6;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.9em;
-    color: #999;
+    transform: scale(1.2); /* Slightly enlarge on hover */
 }
