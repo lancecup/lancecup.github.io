@@ -7,7 +7,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ensure it centers vertically */
+    height: 100vh; /* Center vertically */
 }
 
 /* Main Container */
@@ -22,7 +22,7 @@ body {
     border-radius: 50%;
     border: 5px solid #333;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Name Styling */
@@ -50,9 +50,9 @@ body {
 }
 
 .buttons .button:hover {
-    background: #fff; /* Change to white */
-    color: #333; /* Text turns dark */
-    border-color: #333; /* Add dark border */
+    background: #fff;
+    color: #333;
+    border-color: #333;
 }
 
 /* Social Icons Styling */
@@ -61,12 +61,12 @@ body {
 }
 
 .social-icons img {
-    width: 30px; /* Uniform size for all icons */
+    width: 30px;
     height: 30px;
     margin: 5px;
     transition: transform 0.3s ease;
 }
 
 .social-icons img:hover {
-    transform: scale(1.2); /* Slightly enlarge on hover */
+    transform: scale(1.2);
 }
