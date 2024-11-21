@@ -4,47 +4,55 @@ body {
     padding: 0;
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
+}
+
+/* About Page Layout */
+.about-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Left Section: Profile Card */
+.about-left {
+    flex: 1;
+    background: #333; /* Dark background for the left section */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    color: #fff;
 }
 
-/* Main container */
-.main-container {
+.profile-card {
     text-align: center;
-}
-
-/* Profile picture styling */
-.profile-section {
-    margin-bottom: 20px;
+    padding: 20px;
 }
 
 .profile-pic {
-    width: 150px; /* Smaller size */
+    width: 150px;
     height: 150px;
-    border-radius: 50%; /* Circular picture */
-    border: 5px solid #333; /* Dark border */
-    margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
-}
-
-/* Name styling */
-.name {
-    font-size: 1.8em;
-    font-weight: 600;
-    color: #333;
+    border-radius: 50%;
+    border: 5px solid #fff;
     margin-bottom: 20px;
 }
 
-/* Buttons styling */
+.name {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+hr {
+    border: 1px solid #fff;
+    margin: 20px 0;
+}
+
 .buttons .button {
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-    background: #333;
-    border: 2px solid transparent;
+    background: transparent;
+    border: 2px solid #fff;
     border-radius: 20px;
     padding: 10px 20px;
     margin: 5px;
@@ -55,23 +63,8 @@ body {
 .buttons .button:hover {
     background: #fff; /* Background turns white */
     color: #333; /* Text turns dark */
-    border-color: #333; /* Add dark border */
-}
-
-/* Social icons styling */
-.social-icons {
-    margin-top: 20px;
-    text-align: center; /* Center-align icons */
 }
 
 .social-icons img {
-    width: 30px; /* Uniform size for all icons */
+    width: 30px; /* Consistent size for icons */
     height: 30px;
-    margin: 5px; /* Add spacing between icons */
-    transition: transform 0.3s ease;
-}
-
-.social-icons img:hover {
-    transform: scale(1.2); /* Slightly enlarge on hover */
-    filter: brightness(1.2); /* Brighten the icon on hover */
-}
