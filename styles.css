@@ -15,11 +15,13 @@ body {
 /* Left Section: Profile Card */
 .about-left {
     flex: 1;
-    background: #333; /* Dark background for the left section */
+    background: #333; /* Dark background for left section */
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    flex-direction: column;
+    padding: 20px;
 }
 
 .profile-card {
@@ -36,9 +38,14 @@ body {
 }
 
 .name {
+    font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 1.8em;
     font-weight: bold;
-    margin: 10px 0;
+}
+
+.title {
+    font-size: 1.2em;
+    font-weight: normal;
 }
 
 hr {
@@ -65,6 +72,45 @@ hr {
     color: #333; /* Text turns dark */
 }
 
+/* Social Icons */
+.social-icons {
+    margin-top: 20px;
+}
+
 .social-icons img {
-    width: 30px; /* Consistent size for icons */
-    height: 30px; }
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}
+
+/* Right Section: Content */
+.about-right {
+    flex: 2;
+    padding: 60px;
+    background: #fff;
+    color: #333;
+}
+
+.about-right h2 {
+    font-size: 2em;
+    font-family: Georgia, serif;
+    margin-bottom: 20px;
+}
+
+.about-right p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #999;
+}
