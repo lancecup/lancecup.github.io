@@ -1,47 +1,58 @@
-/* General Body Styling */
+/* General styles */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f9;
+}
+
+/* About Page Layout */
+.about-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Left Section: Profile Card */
+.about-left {
+    flex: 1;
+    background: #333; /* Dark background for the left section */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Center vertically */
+    color: #fff;
 }
 
-/* Main Container */
-.main-container {
+.profile-card {
     text-align: center;
+    padding: 20px;
 }
 
-/* Profile Picture Styling */
 .profile-pic {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 5px solid #333;
+    border: 5px solid #fff;
     margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Name Styling */
 .name {
-    font-family: Georgia, serif;
-    font-size: 2em;
+    font-size: 1.8em;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
+    margin: 10px 0;
 }
 
-/* Buttons Styling */
+hr {
+    border: 1px solid #fff;
+    margin: 20px 0;
+}
+
 .buttons .button {
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-    background: #333;
-    border: 2px solid transparent;
+    background: transparent;
+    border: 2px solid #fff;
     border-radius: 20px;
     padding: 10px 20px;
     margin: 5px;
@@ -50,23 +61,10 @@ body {
 }
 
 .buttons .button:hover {
-    background: #fff;
-    color: #333;
-    border-color: #333;
-}
-
-/* Social Icons Styling */
-.social-icons {
-    margin-top: 20px;
+    background: #fff; /* Background turns white */
+    color: #333; /* Text turns dark */
 }
 
 .social-icons img {
-    width: 30px;
-    height: 30px;
-    margin: 5px;
-    transition: transform 0.3s ease;
-}
-
-.social-icons img:hover {
-    transform: scale(1.2);
-}
+    width: 30px; /* Consistent size for icons */
+    height: 30px; }
