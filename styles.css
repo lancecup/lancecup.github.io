@@ -1,4 +1,4 @@
-/* General styles */
+/* General Body Styling */
 body {
     margin: 0;
     padding: 0;
@@ -7,37 +7,34 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; /* Ensure it centers vertically */
 }
 
-/* Main container */
+/* Main Container */
 .main-container {
     text-align: center;
 }
 
-/* Profile picture styling */
-.profile-section {
-    margin-bottom: 20px;
-}
-
+/* Profile Picture Styling */
 .profile-pic {
-    width: 150px; /* Adjust size */
+    width: 150px;
     height: 150px;
-    border-radius: 50%; /* Circular picture */
-    border: 5px solid #333; /* Dark border */
-    margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+    border-radius: 50%;
+    border: 5px solid #333;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
 
-/* Name styling */
+/* Name Styling */
 .name {
-    font-size: 1.8em;
+    font-family: Georgia, serif;
+    font-size: 2em;
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
 }
 
-/* Buttons styling */
+/* Buttons Styling */
 .buttons .button {
     text-decoration: none;
     font-size: 16px;
@@ -53,18 +50,18 @@ body {
 }
 
 .buttons .button:hover {
-    background: #fff; /* Background turns white */
+    background: #fff; /* Change to white */
     color: #333; /* Text turns dark */
     border-color: #333; /* Add dark border */
 }
 
-/* Social icons styling */
+/* Social Icons Styling */
 .social-icons {
     margin-top: 20px;
 }
 
 .social-icons img {
-    width: 30px;
+    width: 30px; /* Uniform size for all icons */
     height: 30px;
     margin: 5px;
     transition: transform 0.3s ease;
