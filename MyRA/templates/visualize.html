@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Visualization</title> <!-- Sets the page title -->
+</head>
+<body>
+    {% extends "base.html" %} <!-- Inherits layout from the base template -->
+
+    {% block title %}Create Visualizations{% endblock %} <!-- Block for dynamic page title -->
+
+    {% block content %}
+    <div class="container">
+        <h1 class="text-center mt-4">Create Visualizations</h1> <!-- Main header -->
+
+        <!-- Error Message -->
+        {% if error_message %}
+        <div class="alert alert-danger mt-3">
+            {{ error_message }} <!-- Displays error message if present -->
+        </div>
+        {% endif %}
+
+        <!-- Visualization Form -->
+        <form method="post" class="mt-4">
+            <!-- Plot Type Selection -->
+            <h3>Select Plot Type:</h3>
+            <select name="plot_type" class="form-select" id="plot_type" onchange="this.form.submit()">
+                <!-- Dynamically selects plot type based on user input -->
+                <option value="scatter" {% if selected_plot_type == 'scatter' %}selected{% endif %}>Scatter Plot</option>
+                <option value="line" {% if selected_plot_type == 'line' %}selected{% endif %}>Line Plot</option>
+                <option value="bar" {% if selected_plot_type == 'bar' %}selected{% endif %}>Bar Plot</option>
+                <option value="box" {% if selected_plot_type == 'box' %}selected{% endif %}>Box Plot</option>
+                <option value="violin" {% if selected_plot_type == 'violin' %}selected{% endif %}>Violin Plot</option>
+                <option value="hist" {% if selected_plot_type == 'hist' %}selected{% endif %}>Histogram</option>
+                <option value="kde" {% if selected_plot_type == 'kde' %}selected{% endif %}>KDE Plot</option>
+                <option value="heatmap" {% if selected_plot_type == 'heatmap' %}selected{% endif %}>Heatmap</option>
+                <option value="pairplot" {% if selected_plot_type == 'pairplot' %}selected{% endif %}>Pair Plot</option>
+            </select>
+            
+            <!-- Plot Guidance -->
+            <p id="guidance" class="mt-2 text-muted">
+                {{ plot_guidance[selected_plot_type] }} <!-- Displays contextual guidance for the selected plot -->
+            </p>
+
+            <!-- Add Title, Subtitle, Caption -->
+            <h3 class="mt-3">Add Details:</h3>
+            <div class="mb-3">
+                <label for="title">Title:</label> <!-- Input for plot title -->
+                <input type="text" name="title" id="title" class="form-control" placeholder="Enter plot title" value="{{ title }}">
+            </div>
+            <div class="mb-3">
+                <label for="subtitle">Subtitle:</label> <!-- Input for plot subtitle -->
+                <input type="text" name="subtitle" id="subtitle" class="form-control" placeholder="Enter plot subtitle" value="{{ subtitle }}">
+            </div>
+            <div class="mb-3">
+                <label for="caption">Caption:</label> <!-- Input for plot caption -->
+                <input type="text" name="caption" id="caption" class="form-control" placeholder="Enter plot caption" value="{{ caption }}">
+            </div>
+
+            <!-- Variable Selection -->
+            <h3 class="mt-3">Select Variables:</h3>
+            <div class="mb-3">
+                <label for="x_var">X-Axis:</label> <!-- Dropdown for X-axis variable -->
+                <select name="x_var" id="x_var" class="form-select">
+                    {% for col in columns %}
+                    <option value="{{ col }}" {% if x_var == col %}selected{% endif %}>{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="y_var">Y-Axis:</label> <!-- Dropdown for Y-axis variable -->
+                <select name="y_var" id="y_var" class="form-select">
+                    <option value="">None</option>
+                    {% for col in columns %}
+                    <option value="{{ col }}" {% if y_var == col %}selected{% endif %}>{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="hue_var">Group By (Optional):</label> <!-- Dropdown for hue/grouping variable -->
+                <select name="hue_var" id="hue_var" class="form-select">
+                    <option value="">None</option>
+                    {% for col in columns %}
+                    <option value="{{ col }}" {% if hue_var == col %}selected{% endif %}>{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Additional Options -->
+            <h3 class="mt-3">Options:</h3>
+            <div class="form-check">
+                <input type="checkbox" name="log_scale" id="log_scale" class="form-check-input" {% if log_scale %}checked{% endif %}>
+                <label for="log_scale" class="form-check-label">Apply Logarithmic Scale</label> <!-- Option for log scale -->
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary mt-3">Generate Plot</button> <!-- Submits the form -->
+        </form>
+
+        <!-- Display the Generated Plot -->
+        {% if plot_url %}
+        <h2 class="mt-5">Generated Plot</h2> <!-- Header for the plot -->
+        <div class="text-center mt-4">
+            <img src="{{ plot_url }}" alt="Generated Plot" class="img-fluid" style="border: 1px solid #ddd;">
+        </div>
+
+        <!-- Export Buttons -->
+        <div class="mt-4">
+            <a href="{{ plot_url }}" class="btn btn-success" download="visualization.jpeg">Download JPEG</a> <!-- Download option -->
+        </div>
+        
+        <!-- LaTeX Code -->
+        {% if latex_code %}
+        <div class="mt-4">
+            <h4>LaTeX Code:</h4>
+            <pre class="bg-light p-3 border">{{ latex_code }}</pre> <!-- Displays LaTeX code for the plot -->
+        </div>
+        {% endif %}
+
+        <!-- Python Code -->
+        {% if export_code %}
+        <div class="mt-4">
+            <h4>Python Code:</h4>
+            <pre class="bg-light p-3 border">{{ export_code }}</pre> <!-- Displays Python code snippet -->
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Econometric Modeling</title> <!-- Sets the page title -->
+</head>
+<body>
+    {% extends "base.html" %} <!-- Inherits layout from the base template -->
+
+    {% block title %}Run Econometric Models{% endblock %} <!-- Block for dynamic page title -->
+
+    {% block content %}
+    <h1 class="text-center">Econometric Modeling</h1> <!-- Main header of the page -->
+
+    {% if error_message %}
+    <div class="alert alert-danger">
+        {{ error_message }} <!-- Displays an error message, if available -->
+    </div>
+    {% endif %}
+
+    <form method="post">
+        <h3>Select Model Type:</h3> <!-- Radio buttons for model type selection -->
+        <div class="form-check">
+            <input class="form-check-input" id="model_type_ols" type="radio" name="model_type" value="ols" required>
+            <label class="form-check-label" for="model_type_ols">Ordinary Least Squares (OLS)</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" id="model_type_logistic" type="radio" name="model_type" value="logistic">
+            <label class="form-check-label" for="model_type_logistic">Logistic Regression</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" id="model_type_fixed" type="radio" name="model_type" value="fixed">
+            <label class="form-check-label" for="model_type_fixed">Fixed Effects (Panel Data)</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" id="model_type_random" type="radio" name="model_type" value="random">
+            <label class="form-check-label" for="model_type_random">Random Effects (Panel Data)</label>
+        </div>
+
+        <h3>Panel Data Settings:</h3> <!-- Dropdowns for panel data settings -->
+        <label for="entity_col">Entity Column:</label>
+        <select name="entity_col" class="form-select">
+            <option value="">-- Select --</option> <!-- Default option -->
+            {% for col in columns %}
+            <option value="{{ col }}">{{ col }}</option> <!-- Dynamically populate columns -->
+            {% endfor %}
+        </select>
+        <label for="time_col" class="mt-2">Time Column:</label>
+        <select name="time_col" class="form-select">
+            <option value="">-- Select --</option>
+            {% for col in columns %}
+            <option value="{{ col }}">{{ col }}</option>
+            {% endfor %}
+        </select>
+
+        <h3>Select Dependent Variable:</h3> <!-- Dropdown for dependent variable -->
+        <select name="dependent_var" class="form-select">
+            <option value="">-- Select --</option>
+            {% for col in columns %}
+            <option value="{{ col }}">{{ col }}</option>
+            {% endfor %}
+        </select>
+
+        <h3>Select Independent Variables:</h3> <!-- Checkboxes for independent variables -->
+        {% for col in columns %}
+        <div class="form-check">
+            <input class="form-check-input" id="independent_var_{{ loop.index }}" type="checkbox" name="independent_vars" value="{{ col }}">
+            <label class="form-check-label" for="independent_var_{{ loop.index }}">{{ col }}</label>
+        </div>
+        {% endfor %}
+
+        <h3>Additional Options:</h3> <!-- Option for robust errors -->
+        <div class="form-check">
+            <input class="form-check-input" id="robust_errors" type="checkbox" name="robust_errors" value="true">
+            <label class="form-check-label" for="robust_errors">Use Robust Standard Errors</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Run Model</button> <!-- Submit button -->
+    </form>
+
+    {% if formula %}
+    <h3>Model Formula:</h3>
+    <p class="bg-light p-3 border">{{ formula }}</p> <!-- Displays the formula -->
+    {% endif %}
+
+    {% if model_results %}
+    <h2>Model Summary</h2> <!-- Displays model summary -->
+    <div style="background-color: #f9f9f9; padding: 10px; border: 1px solid #ddd; font-family: 'Courier New', Courier, monospace; white-space: pre; overflow-x: auto;">
+        {{ model_results['summary'] | safe }}
+    </div>
+
+    <h3>Key Results:</h3> <!-- Table for key results -->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>Coefficient</th>
+                <th>P-Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for var, coef in model_results['coefficients'].items() %}
+            <tr>
+                <td>{{ var }}</td>
+                <td>{{ coef }}</td>
+                <td>{{ model_results['pvalues'][var] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Python Code to Run This Model:</h3> <!-- Python code snippet -->
+    <pre>
+        <code>
+import pandas as pd
+import statsmodels.api as sm
+
+# Load your dataset
+data = pd.read_csv('your_dataset.csv')
+
+# Define the formula
+formula = "{{ formula }}"
+
+# Fit the model
+model = sm.OLS.from_formula(formula, data=data)
+results = model.fit(cov_type='HC3' if {{ 'True' if 'robust_errors' in request.form else 'False' }} else 'nonrobust')
+
+# Summary
+print(results.summary())
+        </code>
+    </pre>
+
+    <h3>LaTeX Code for Export:</h3> <!-- LaTeX code snippet -->
+    <pre>
+        <code>
+    {{ latex_code | safe }}
+        </code>
+    </pre>
+    {% endif %}
+
+    {% if diagnostics %}
+    <h2>Diagnostics</h2> <!-- Diagnostics Section -->
+
+    <h3>Variance Inflation Factor (VIF):</h3> <!-- VIF Table -->
+    <p><strong>Decision Rule:</strong> {{ diagnostics.vif.decision_rule }}</p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Variable</th>
+                <th>VIF</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for var, vif in diagnostics.vif.data.items() %}
+            <tr>
+                <td>{{ var }}</td>
+                <td>{{ vif }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Breusch-Pagan Test:</h3> <!-- BP Test Results -->
+    <p><strong>Decision Rule:</strong> {{ diagnostics.bp_test.decision_rule }}</p>
+    <p><strong>p-value:</strong> {{ diagnostics.bp_test.p_value }}</p>
+    <p><strong>Interpretation:</strong> {{ diagnostics.bp_test.interpretation }}</p>
+
+    <h3>White Test:</h3> <!-- White Test Results -->
+    <p><strong>Decision Rule:</strong> {{ diagnostics.white_test.decision_rule }}</p>
+    <p><strong>p-value:</strong> {{ diagnostics.white_test.p_value }}</p>
+    <p><strong>Interpretation:</strong> {{ diagnostics.white_test.interpretation }}</p>
+
+    <h3>Residual Diagnostics:</h3> <!-- Residual Diagnostics -->
+    <p><strong>Residuals vs Fitted:</strong></p>
+    <img src="data:image/png;base64,{{ diagnostics.residual_plot }}" alt="Residual Plot">
+    <p><strong>Q-Q Plot:</strong></p>
+    <img src="data:image/png;base64,{{ diagnostics.qq_plot }}" alt="Q-Q Plot">
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

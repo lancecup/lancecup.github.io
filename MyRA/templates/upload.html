@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Dataset</title> <!-- Sets the page title -->
+</head>
+<body>
+    {% extends "base.html" %} <!-- Inherits the base template -->
+
+    {% block title %}Upload Dataset{% endblock %} <!-- Block for dynamic page title -->
+
+    {% block content %}
+    <h1 class="text-center">Upload Dataset</h1> <!-- Main header for the page -->
+
+    <!-- Form for Uploading Dataset -->
+    <form method="post" enctype="multipart/form-data" class="mt-4">
+        <div class="mb-3">
+            <label for="file" class="form-label">Select File to Upload:</label> <!-- Label for the file input -->
+            <input type="file" name="file" id="file" class="form-control" required> <!-- File input field -->
+        </div>
+        <button type="submit" class="btn btn-success">Upload</button> <!-- Submit button -->
+    </form>
+
+    <!-- Back to Home Button -->
+    <div class="mt-3">
+        <a href="/" class="btn btn-secondary">Back to Home</a> <!-- Link to navigate back to the home page -->
+    </div>
+
+    <!-- Python Code to Upload Datasets -->
+    <div class="mt-5">
+        <h4>How to Upload a Dataset in Python:</h4> <!-- Section explaining Python code for uploading datasets -->
+        <p>You can upload and load datasets programmatically in Python using the <code>pandas</code> library. Below are examples for common file formats:</p>
+        
+        <!-- Python Example for CSV Files -->
+        <h5>1. CSV File:</h5>
+        <pre class="bg-light p-3 border">
+# Import pandas
+import pandas as pd
+
+# Load a dataset from a CSV file
+file_path = "path_to_your_file.csv"  # Replace with your file path
+df = pd.read_csv(file_path)
+
+# Display the first few rows of the dataset
+print(df.head())
+        </pre>
+        
+        <!-- Python Example for Excel Files -->
+        <h5>2. Excel File (.xlsx):</h5>
+        <pre class="bg-light p-3 border">
+# Import pandas
+import pandas as pd
+
+# Load a dataset from an Excel file
+file_path = "path_to_your_file.xlsx"  # Replace with your file path
+df = pd.read_excel(file_path)
+
+# Display the first few rows of the dataset
+print(df.head())
+        </pre>
+
+        <!-- Python Example for Stata Files -->
+        <h5>3. Stata File (.dta):</h5>
+        <pre class="bg-light p-3 border">
+# Import pandas
+import pandas as pd
+
+# Load a dataset from a Stata file
+file_path = "path_to_your_file.dta"  # Replace with your file path
+df = pd.read_stata(file_path)
+
+# Display the first few rows of the dataset
+print(df.head())
+        </pre>
+
+        <!-- Guidance for Replacing File Paths -->
+        <p>Replace <code>path_to_your_file</code> with the full file path to your dataset. These commands will load the data into a pandas DataFrame for further analysis.</p>
+    </div>
+    {% endblock %}
+
+    <!-- Navigation Links -->
+    <div style="background-color: #f0f0f0; padding: 10px; margin-top: 30px;">
+        <a href="/">Home</a> | <!-- Link to Home -->
+        <a href="/upload">Upload</a> | <!-- Link to Upload -->
+        <a href="/manipulate">Manipulate</a> | <!-- Link to Manipulate -->
+        <a href="/visualize">Visualize</a> | <!-- Link to Visualize -->
+        <a href="/model">Models</a> | <!-- Link to Models -->
+        <a href="/power">Power Calculations</a> <!-- Link to Power Calculations -->
+    </div>
+</body>
+</html>

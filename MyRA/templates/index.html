@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RA Web App</title> <!-- Sets the title of the page, displayed in the browser tab -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Includes Bootstrap 5 for styling -->
+</head>
+<body>
+
+{% extends "base.html" %} <!-- Extends a base template, likely using a templating engine like Jinja2 -->
+
+{% block title %}Home{% endblock %} <!-- Defines the title block for the extended template -->
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="text-center mb-4">Welcome to MyRA!</h1> <!-- Main heading for the web page -->
+    <p class="mb-4">Upload your datasets and start exploring.</p> <!-- Brief introductory text -->
+
+    <!-- Menu Buttons -->
+    <div class="d-grid gap-3">
+        <!-- Button for uploading datasets -->
+        <a href="/upload" class="btn btn-primary btn-lg">Upload Dataset</a>
+        <!-- Button for visualizations -->
+        <a href="/visualize" class="btn btn-info btn-lg">Create Visualizations</a>
+        <!-- Button for running econometric models -->
+        <a href="/model" class="btn btn-warning btn-lg text-dark">Run Econometric Models</a>
+        <!-- Button for summary statistics -->
+        <a href="/summary" class="btn btn-success btn-lg">Summary Statistics</a>
+        <!-- Button for power calculations -->
+        <a href="/power" class="btn btn-danger btn-lg">Power Calculations</a>
+    </div>
+</div>
+{% endblock %} <!-- Ends the content block -->
+</body>
+</html>

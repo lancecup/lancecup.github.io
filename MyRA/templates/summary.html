@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary Statistics</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block title %}Summary Statistics{% endblock %}
+
+    {% block content %}
+    <div class="container mt-4">
+        <h1 class="text-center">Summary Statistics</h1>
+
+        {% if error_message %}
+        <div class="alert alert-danger">
+            {{ error_message }} <!-- Displays error message if one exists -->
+        </div>
+        {% endif %}
+
+        <form method="post" class="mt-4">
+            <!-- Variable Selection Section -->
+            <h3>Select Variables:</h3>
+            <div class="mb-3">
+                {% for col in columns %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="variables" value="{{ col }}" id="var_{{ col }}">
+                    <label class="form-check-label" for="var_{{ col }}">{{ col }}</label>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Statistics Selection Section -->
+            <h3>Select Statistics to Compute:</h3>
+            <div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="stats" value="mean" id="mean" checked>
+                    <label class="form-check-label" for="mean">Mean</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="stats" value="median" id="median" checked>
+                    <label class="form-check-label" for="median">Median</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="stats" value="std" id="std" checked>
+                    <label class="form-check-label" for="std">Standard Deviation</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="stats" value="min" id="min" checked>
+                    <label class="form-check-label" for="min">Minimum</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="stats" value="max" id="max" checked>
+                    <label class="form-check-label" for="max">Maximum</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="stats" value="sum" id="sum" checked>
+                    <label class="form-check-label" for="sum">Sum</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="stats" value="count" id="count" checked>
+                    <label class="form-check-label" for="count">Count</label>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary">Generate Summary</button>
+                <a href="/data" class="btn btn-secondary">Back to Data</a>
+            </div>
+        </form>
+
+        <!-- Summary Results Section -->
+        {% if summary_results %}
+        <h2 class="mt-4">Summary Results</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Variable</th>
+                        {% for stat_title in stat_titles.values() %}
+                            <th>{{ stat_title }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for variable, stats in summary_results.items() %}
+                        <tr>
+                            <td>{{ variable }}</td>
+                            {% for stat_key in stat_titles.keys() %}
+                                <td>
+                                    {{ stats.get(stat_key, '') if stats.get(stat_key, '') != "" else "—" }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>            
+        </div>
+
+        <!-- LaTeX Code Section -->
+        <div class="mt-4">
+            <h4>LaTeX Code for Table:</h4>
+            <pre class="bg-light p-3 border">{{ latex_code }}</pre>
+        </div>
+
+        <!-- Python Code Section -->
+        {% if python_code %}
+        <div class="mt-4">
+            <h4>Python Code:</h4>
+            <pre class="bg-light p-3 border">{{ python_code }}</pre>
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+    {% endblock %}
+</body>
+</html>
