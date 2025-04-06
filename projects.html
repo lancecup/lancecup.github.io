@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Showcase</title>
+    <link rel="stylesheet" href="about.css">
+    <style>
+        .code-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .code-section {
+            background-color: #f9f9f9;
+            border-left: 5px solid #007acc;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .code-section h2 {
+            margin-top: 0;
+        }
+
+        pre {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 1rem;
+            overflow-x: auto;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="code-container">
+        <h1>Code Showcase</h1>
+
+        <div class="code-section">
+            <h2>Stata</h2>
+            <pre><code>* Basic regression
+regress wage education experience
+
+* Loop through years
+forvalues year = 2000/2020 {
+    display "Processing year `year'"
+}</code></pre>
+        </div>
+
+        <div class="code-section">
+            <h2>R</h2>
+            <pre><code># Load libraries
+library(tidyverse)
+
+# Plotting GDP growth
+ggplot(data, aes(x = year, y = gdp_growth)) +
+    geom_line(color = "blue") +
+    theme_minimal()</code></pre>
+        </div>
+
+        <div class="code-section">
+            <h2>Python</h2>
+            <pre><code>import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load data
+df = pd.read_csv("data.csv")
+
+# Plotting
+df.plot(x="year", y="inflation", kind="line")
+plt.show()</code></pre>
+        </div>
+
+        <div class="code-section">
+            <h2>Julia</h2>
+            <pre><code>using DataFrames, Plots
+
+df = DataFrame(year = 2000:2010, value = rand(11))
+
+@df df plot(:year, :value, label = "Random Data")</code></pre>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Lance Cu Pangilinan. All rights reserved.</p>
+    </footer>
+</body>
+</html>
